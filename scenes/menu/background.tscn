@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bclavqqpokmq2"]
+
+[ext_resource type="Shader" path="res://assets/shaders/offset.gdshader" id="1_03la4"]
+[ext_resource type="Texture2D" uid="uid://00v10ovbhw1s" path="res://assets/menu/background.png" id="2_16ax4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y0sn1"]
+shader = ExtResource("1_03la4")
+shader_parameter/offset_speed = 1.0
+
+[node name="Background" type="TextureRect"]
+material = SubResource("ShaderMaterial_y0sn1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_16ax4")
+stretch_mode = 1
