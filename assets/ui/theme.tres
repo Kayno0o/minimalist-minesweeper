@@ -1,14 +1,46 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dhq8le66f6khp"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://dhq8le66f6khp"]
 
 [ext_resource type="Texture2D" uid="uid://dvst1mvub3t2n" path="res://assets/ui/ui.png" id="1_oetkk"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tnh4u"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n76ht"]
 texture = ExtResource("1_oetkk")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 4.0
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(64, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ogqb"]
+texture = ExtResource("1_oetkk")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(80, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hcquo"]
+texture = ExtResource("1_oetkk")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
 region_rect = Rect2(32, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a6v33"]
+texture = ExtResource("1_oetkk")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogpyh"]
+atlas = ExtResource("1_oetkk")
+region = Rect2(32, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26l6h"]
+atlas = ExtResource("1_oetkk")
+region = Rect2(16, 128, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5rgmq"]
 region = Rect2(0, 0, 32, 16)
@@ -23,19 +55,22 @@ region = Rect2(0, 16, 32, 16)
 region = Rect2(32, 16, 32, 16)
 
 [resource]
-Button/colors/font_color = Color(0.901961, 0.631373, 0.811765, 1)
-Button/colors/font_disabled_color = Color(0.301961, 0.301961, 0.501961, 1)
-Button/colors/font_focus_color = Color(0.301961, 0.301961, 0.501961, 1)
-Button/colors/font_hover_color = Color(0.301961, 0.301961, 0.501961, 1)
-Button/colors/font_hover_pressed_color = Color(0.301961, 0.301961, 0.501961, 1)
-Button/colors/font_pressed_color = Color(0.301961, 0.301961, 0.501961, 1)
-Button/styles/disabled = SubResource("StyleBoxTexture_tnh4u")
-Button/styles/focus = SubResource("StyleBoxTexture_tnh4u")
-Button/styles/hover = SubResource("StyleBoxTexture_tnh4u")
-Button/styles/hover_pressed = SubResource("StyleBoxTexture_tnh4u")
-Button/styles/normal = SubResource("StyleBoxTexture_tnh4u")
-Button/styles/pressed = SubResource("StyleBoxTexture_tnh4u")
+Button/colors/font_color = Color(0.984314, 0.733333, 0.678431, 1)
+Button/colors/font_disabled_color = Color(0.160784, 0.156863, 0.192157, 1)
+Button/colors/font_focus_color = Color(0.933333, 0.52549, 0.584314, 1)
+Button/colors/font_hover_color = Color(0.933333, 0.52549, 0.584314, 1)
+Button/colors/font_hover_pressed_color = Color(0.933333, 0.52549, 0.584314, 1)
+Button/colors/font_pressed_color = Color(0.984314, 0.733333, 0.678431, 1)
+Button/styles/disabled = SubResource("StyleBoxTexture_n76ht")
+Button/styles/focus = SubResource("StyleBoxTexture_5ogqb")
+Button/styles/hover = SubResource("StyleBoxTexture_hcquo")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_a6v33")
+Button/styles/normal = SubResource("StyleBoxTexture_hcquo")
+Button/styles/pressed = SubResource("StyleBoxTexture_a6v33")
+CheckBox/icons/checked = SubResource("AtlasTexture_ogpyh")
+CheckBox/icons/unchecked = SubResource("AtlasTexture_26l6h")
 CheckButton/icons/checked = SubResource("AtlasTexture_5rgmq")
 CheckButton/icons/checked_disabled = SubResource("AtlasTexture_m7ftp")
 CheckButton/icons/unchecked = SubResource("AtlasTexture_ien5k")
 CheckButton/icons/unchecked_disabled = SubResource("AtlasTexture_dse2n")
+Label/colors/font_color = Color(0.984314, 0.733333, 0.678431, 1)
