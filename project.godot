@@ -26,8 +26,8 @@ window/handheld/orientation=1
 
 [gui]
 
-theme/custom="res://assets/theme.tres"
-theme/custom_font="res://assets/menu/font/Pixel Terminal.ttf"
+theme/custom="res://assets/ui/theme.tres"
+theme/custom_font="res://assets/font/Pixel Terminal.ttf"
 
 [importer_defaults]
 

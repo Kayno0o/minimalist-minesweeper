@@ -1,18 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://bclavqqpokmq2"]
 
 [ext_resource type="Shader" path="res://assets/shaders/offset.gdshader" id="1_03la4"]
-[ext_resource type="Texture2D" uid="uid://00v10ovbhw1s" path="res://assets/menu/background.png" id="2_16ax4"]
+[ext_resource type="Texture2D" uid="uid://dvst1mvub3t2n" path="res://assets/ui/ui.png" id="2_mxwhm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y0sn1"]
 shader = ExtResource("1_03la4")
 shader_parameter/offset_speed = 1.0
+shader_parameter/region_size = Vector2(16, 16)
+shader_parameter/total_texture_size = Vector2(128, 128)
+shader_parameter/region_position = Vector2(32, 0)
 
-[node name="Background" type="TextureRect"]
+[node name="Background" type="NinePatchRect"]
 material = SubResource("ShaderMaterial_y0sn1")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_16ax4")
-stretch_mode = 1
+texture = ExtResource("2_mxwhm")
+region_rect = Rect2(32, 0, 16, 16)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1

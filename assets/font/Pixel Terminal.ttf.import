@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://goaohwjfrx2i"
-path="res://.godot/imported/Pixel Terminal.ttf-d6338e03d56084191de6dd747aa4a732.fontdata"
+path="res://.godot/imported/Pixel Terminal.ttf-09e05e08a0c6124fd4029783de5949ba.fontdata"
 
 [deps]
 
-source_file="res://assets/menu/font/Pixel Terminal.ttf"
-dest_files=["res://.godot/imported/Pixel Terminal.ttf-d6338e03d56084191de6dd747aa4a732.fontdata"]
+source_file="res://assets/font/Pixel Terminal.ttf"
+dest_files=["res://.godot/imported/Pixel Terminal.ttf-09e05e08a0c6124fd4029783de5949ba.fontdata"]
 
 [params]
 
