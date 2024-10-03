@@ -1,10 +1,17 @@
 extends Control
 
+signal option_button_toggled
+
 @onready var game = preload("res://scenes/board/game.tscn")
+@onready var start_button = $StartButton
+@onready var option_button = $OptionButton
+
+func _ready() -> void:
+	start_button.grab_focus()
+	option_button.connect("pressed", _on_option_button_pressed)
 
 func _on_start_pressed() -> void:
 	get_tree().change_scene_to_packed(game)
 
-
-func _on_check_button_toggled(toggled_on: bool) -> void:
-	RenderingServer.global_shader_parameter_set("animated_background", toggled_on)
+func _on_option_button_pressed() -> void:
+	emit_signal("option_button_toggled")

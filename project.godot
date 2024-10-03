@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Advanced Minesweeper"
-run/main_scene="res://scenes/menu/main_menu/main_menu.tscn"
+run/main_scene="res://scenes/menu/menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=512
 window/size/viewport_height=576
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
 
@@ -53,7 +53,7 @@ texture={
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_filter=3
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 

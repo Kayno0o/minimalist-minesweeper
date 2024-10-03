@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://pfic0aga47yd"]
+
+[ext_resource type="Theme" uid="uid://dhq8le66f6khp" path="res://assets/ui/theme.tres" id="1_u2do4"]
+[ext_resource type="Script" path="res://scenes/menu/animated_bg_button.gd" id="2_i46fj"]
+
+[node name="AnimatedBgButton" type="CheckBox"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -138.0
+offset_top = -48.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("1_u2do4")
+button_pressed = true
+text = "Animated BG"
+script = ExtResource("2_i46fj")
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]

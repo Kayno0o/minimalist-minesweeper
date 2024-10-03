@@ -1,10 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://4kuxresjq8q1"]
+[gd_scene load_steps=10 format=3 uid="uid://4kuxresjq8q1"]
 
 [ext_resource type="Script" path="res://scenes/menu/main_menu/main_menu.gd" id="1_jg4ee"]
-[ext_resource type="PackedScene" uid="uid://bclavqqpokmq2" path="res://scenes/menu/background.tscn" id="2_r8t1q"]
 [ext_resource type="Theme" uid="uid://dhq8le66f6khp" path="res://assets/ui/theme.tres" id="3_rhcb6"]
 [ext_resource type="Texture2D" uid="uid://dvst1mvub3t2n" path="res://assets/ui/ui.png" id="4_khul5"]
-[ext_resource type="Script" path="res://scenes/menu/main_menu/check_button.gd" id="4_olf13"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_x0igr"]
 device = -1
@@ -38,9 +36,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jg4ee")
 
-[node name="Background" parent="." instance=ExtResource("2_r8t1q")]
-layout_mode = 1
-
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -71,11 +66,14 @@ offset_top = -32.0
 offset_right = 64.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_left = NodePath("../OptionButton")
+focus_neighbor_bottom = NodePath("../OptionButton")
+focus_next = NodePath("../OptionButton")
 theme = ExtResource("3_rhcb6")
 shortcut = SubResource("Shortcut_tuptg")
 text = "Start Game"
 
-[node name="SettingsButton" type="Button" parent="."]
+[node name="OptionButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -85,29 +83,11 @@ offset_top = -48.0
 offset_right = 112.0
 offset_bottom = -16.0
 grow_vertical = 0
+focus_neighbor_top = NodePath("../StartButton")
 theme = ExtResource("3_rhcb6")
 shortcut = SubResource("Shortcut_g0s7b")
 text = "Options"
 icon = SubResource("AtlasTexture_aj7b3")
 expand_icon = true
 
-[node name="CheckButton" type="CheckBox" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = -48.0
-offset_right = -16.0
-offset_bottom = -16.0
-grow_horizontal = 0
-grow_vertical = 0
-theme = ExtResource("3_rhcb6")
-button_pressed = true
-text = "Animated BG"
-script = ExtResource("4_olf13")
-
 [connection signal="pressed" from="StartButton" to="." method="_on_start_pressed"]
-[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]
