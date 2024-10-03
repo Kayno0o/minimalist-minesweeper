@@ -1,6 +1,4 @@
-extends Control
-
-signal option_button_toggled
+extends Menu
 
 @onready var game = preload("res://scenes/board/game.tscn")
 @onready var start_button = $StartButton
@@ -14,4 +12,4 @@ func _on_start_pressed() -> void:
 	get_tree().change_scene_to_packed(game)
 
 func _on_option_button_pressed() -> void:
-	emit_signal("option_button_toggled")
+	open_menu.emit('option_menu')

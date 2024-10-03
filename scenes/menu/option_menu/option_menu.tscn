@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgb02ep8cfa4q"]
+[gd_scene load_steps=6 format=3 uid="uid://bgb02ep8cfa4q"]
 
 [ext_resource type="Theme" uid="uid://dhq8le66f6khp" path="res://assets/ui/theme.tres" id="1_eeea3"]
+[ext_resource type="Script" path="res://scenes/menu/option_menu/option_menu.gd" id="1_t7llv"]
 [ext_resource type="PackedScene" uid="uid://pfic0aga47yd" path="res://scenes/menu/animated_bg_button.tscn" id="2_esgpu"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_csbqa"]
@@ -17,6 +18,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_t7llv")
+menu_name = "option_menu"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

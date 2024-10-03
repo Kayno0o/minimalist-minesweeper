@@ -35,6 +35,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jg4ee")
+menu_name = "main_menu"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -67,8 +68,11 @@ offset_right = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath("../OptionButton")
+focus_neighbor_top = NodePath("../OptionButton")
+focus_neighbor_right = NodePath("../OptionButton")
 focus_neighbor_bottom = NodePath("../OptionButton")
 focus_next = NodePath("../OptionButton")
+focus_previous = NodePath("../OptionButton")
 theme = ExtResource("3_rhcb6")
 shortcut = SubResource("Shortcut_tuptg")
 text = "Start Game"
@@ -83,11 +87,14 @@ offset_top = -48.0
 offset_right = 112.0
 offset_bottom = -16.0
 grow_vertical = 0
+focus_neighbor_left = NodePath("../StartButton")
 focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_right = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../StartButton")
+focus_next = NodePath("../StartButton")
+focus_previous = NodePath("../StartButton")
 theme = ExtResource("3_rhcb6")
 shortcut = SubResource("Shortcut_g0s7b")
 text = "Options"
 icon = SubResource("AtlasTexture_aj7b3")
 expand_icon = true
-
-[connection signal="pressed" from="StartButton" to="." method="_on_start_pressed"]
