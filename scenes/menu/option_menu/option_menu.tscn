@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgb02ep8cfa4q"]
+[gd_scene load_steps=7 format=3 uid="uid://bgb02ep8cfa4q"]
 
 [ext_resource type="Theme" uid="uid://dhq8le66f6khp" path="res://assets/ui/theme.tres" id="1_eeea3"]
 [ext_resource type="Script" path="res://scenes/menu/option_menu/option_menu.gd" id="1_t7llv"]
-[ext_resource type="PackedScene" uid="uid://pfic0aga47yd" path="res://scenes/menu/animated_bg_button.tscn" id="2_esgpu"]
+[ext_resource type="Script" path="res://scenes/menu/scripts/menu_button_class.gd" id="3_kr8wa"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_csbqa"]
 device = -1
@@ -11,7 +11,14 @@ keycode = 4194305
 [sub_resource type="Shortcut" id="Shortcut_pdee6"]
 events = [SubResource("InputEventKey_csbqa")]
 
-[node name="OptionMenu" type="Control"]
+[sub_resource type="GDScript" id="GDScript_eshmy"]
+script/source = "extends CheckBox
+
+func _on_toggled(toggled_on:bool) -> void:
+	RenderingServer.global_shader_parameter_set(\"animated_background\", toggled_on)
+"
+
+[node name="OptionMenu" type="Control" node_paths=PackedStringArray("buttons", "focus_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +27,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t7llv")
 menu_name = "option_menu"
+buttons = [NodePath("MainMenuButton")]
+focus_button = NodePath("AnimatedBgButton")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -41,22 +50,26 @@ vertical_alignment = 1
 
 [node name="MainMenuButton" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 16.0
+offset_left = -112.0
 offset_top = -48.0
-offset_right = 112.0
+offset_right = -16.0
 offset_bottom = -16.0
+grow_horizontal = 0
 grow_vertical = 0
 focus_neighbor_top = NodePath("../StartButton")
-focus_neighbor_right = NodePath("../AnimatedBgButton")
 theme = ExtResource("1_eeea3")
 shortcut = SubResource("Shortcut_pdee6")
 text = "Main Menu"
 expand_icon = true
+script = ExtResource("3_kr8wa")
+menu_name = "main_menu"
 
-[node name="AnimatedBgButton" parent="." instance=ExtResource("2_esgpu")]
+[node name="AnimatedBgButton" type="CheckBox" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -69,3 +82,9 @@ offset_right = 61.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_eeea3")
+button_pressed = true
+text = "Animated BG"
+script = SubResource("GDScript_eshmy")
+
+[connection signal="toggled" from="AnimatedBgButton" to="." method="_on_animated_bg_button_toggled"]

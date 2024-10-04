@@ -1,12 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://4kuxresjq8q1"]
+[gd_scene load_steps=12 format=3 uid="uid://4kuxresjq8q1"]
 
 [ext_resource type="Script" path="res://scenes/menu/main_menu/main_menu.gd" id="1_jg4ee"]
 [ext_resource type="Theme" uid="uid://dhq8le66f6khp" path="res://assets/ui/theme.tres" id="3_rhcb6"]
+[ext_resource type="Script" path="res://scenes/menu/scripts/menu_button_class.gd" id="3_wgyc8"]
 [ext_resource type="Texture2D" uid="uid://dvst1mvub3t2n" path="res://assets/ui/ui.png" id="4_khul5"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_x0igr"]
-device = -1
-keycode = 4194309
 
 [sub_resource type="InputEventKey" id="InputEventKey_rxl00"]
 device = -1
@@ -14,7 +11,7 @@ keycode = 32
 unicode = 32
 
 [sub_resource type="Shortcut" id="Shortcut_tuptg"]
-events = [SubResource("InputEventKey_x0igr"), SubResource("InputEventKey_rxl00")]
+events = [SubResource("InputEventKey_rxl00")]
 
 [sub_resource type="InputEventKey" id="InputEventKey_csbqa"]
 device = -1
@@ -27,7 +24,14 @@ events = [SubResource("InputEventKey_csbqa")]
 atlas = ExtResource("4_khul5")
 region = Rect2(16, 80, 16, 16)
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="InputEventKey" id="InputEventKey_hhgk8"]
+device = -1
+keycode = 4194332
+
+[sub_resource type="Shortcut" id="Shortcut_fejrp"]
+events = [SubResource("InputEventKey_hhgk8")]
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("buttons", "focus_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,6 +40,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jg4ee")
 menu_name = "main_menu"
+buttons = [NodePath("OptionButton"), NodePath("CreditButton")]
+focus_button = NodePath("StartButton")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -68,11 +74,11 @@ offset_right = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath("../OptionButton")
-focus_neighbor_top = NodePath("../OptionButton")
-focus_neighbor_right = NodePath("../OptionButton")
+focus_neighbor_top = NodePath("../CreditButton")
+focus_neighbor_right = NodePath("../CreditButton")
 focus_neighbor_bottom = NodePath("../OptionButton")
 focus_next = NodePath("../OptionButton")
-focus_previous = NodePath("../OptionButton")
+focus_previous = NodePath("../CreditButton")
 theme = ExtResource("3_rhcb6")
 shortcut = SubResource("Shortcut_tuptg")
 text = "Start Game"
@@ -89,12 +95,40 @@ offset_bottom = -16.0
 grow_vertical = 0
 focus_neighbor_left = NodePath("../StartButton")
 focus_neighbor_top = NodePath("../StartButton")
-focus_neighbor_right = NodePath("../StartButton")
+focus_neighbor_right = NodePath("../CreditButton")
 focus_neighbor_bottom = NodePath("../StartButton")
-focus_next = NodePath("../StartButton")
+focus_next = NodePath("../CreditButton")
 focus_previous = NodePath("../StartButton")
 theme = ExtResource("3_rhcb6")
 shortcut = SubResource("Shortcut_g0s7b")
 text = "Options"
 icon = SubResource("AtlasTexture_aj7b3")
 expand_icon = true
+script = ExtResource("3_wgyc8")
+menu_name = "option_menu"
+
+[node name="CreditButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -48.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_neighbor_left = NodePath("../OptionButton")
+focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_right = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../StartButton")
+focus_next = NodePath("../StartButton")
+focus_previous = NodePath("../OptionButton")
+theme = ExtResource("3_rhcb6")
+shortcut = SubResource("Shortcut_fejrp")
+text = "Credits"
+expand_icon = true
+script = ExtResource("3_wgyc8")
+menu_name = "credit_menu"

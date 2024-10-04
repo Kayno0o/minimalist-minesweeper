@@ -1,0 +1,121 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8h0fvnk6p7il"]
+
+[ext_resource type="Script" path="res://scenes/menu/credit_menu/credit_menu.gd" id="1_anmgk"]
+[ext_resource type="Theme" uid="uid://dhq8le66f6khp" path="res://assets/ui/theme.tres" id="2_ocr7c"]
+[ext_resource type="Script" path="res://scenes/menu/scripts/menu_button_class.gd" id="3_fytda"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_csbqa"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_sd6f6"]
+events = [SubResource("InputEventKey_csbqa")]
+
+[node name="CreditMenu" type="Control" node_paths=PackedStringArray("buttons")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_anmgk")
+menu_name = "credit_menu"
+buttons = [NodePath("MainMenuButton")]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -152.0
+offset_top = 64.0
+offset_right = 152.0
+offset_bottom = 160.0
+grow_horizontal = 2
+theme = ExtResource("2_ocr7c")
+theme_override_colors/font_shadow_color = Color(0.933333, 0.52549, 0.584314, 1)
+theme_override_constants/line_spacing = -25
+theme_override_font_sizes/font_size = 45
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenuButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -48.0
+offset_right = 112.0
+offset_bottom = -16.0
+grow_vertical = 0
+focus_neighbor_left = NodePath("../GridContainer/RepoLink")
+focus_neighbor_top = NodePath("../GridContainer/RepoLink")
+focus_neighbor_right = NodePath("../GridContainer/DevContainer/DevLink")
+focus_neighbor_bottom = NodePath("../GridContainer/DevContainer/DevLink")
+focus_next = NodePath("../GridContainer/DevContainer/DevLink")
+focus_previous = NodePath("../GridContainer/RepoLink")
+theme = ExtResource("2_ocr7c")
+shortcut = SubResource("Shortcut_sd6f6")
+text = "Main Menu"
+expand_icon = true
+script = ExtResource("3_fytda")
+menu_name = "main_menu"
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="Dev" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Developer: "
+
+[node name="DevContainer" type="Control" parent="GridContainer"]
+layout_mode = 2
+
+[node name="DevLink" type="LinkButton" parent="GridContainer/DevContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_right = 67.0
+offset_bottom = 10.0
+grow_vertical = 2
+focus_neighbor_left = NodePath("../../../MainMenuButton")
+focus_neighbor_top = NodePath("../../../MainMenuButton")
+focus_neighbor_right = NodePath("../../RepoLink")
+focus_neighbor_bottom = NodePath("../../RepoLink")
+focus_next = NodePath("../../RepoLink")
+focus_previous = NodePath("../../../MainMenuButton")
+focus_mode = 2
+text = "Kayno0o"
+uri = "https://github.com/Kayno0o"
+
+[node name="Repo" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Repository:"
+
+[node name="RepoLink" type="LinkButton" parent="GridContainer"]
+layout_mode = 2
+focus_neighbor_left = NodePath("../DevContainer/DevLink")
+focus_neighbor_top = NodePath("../DevContainer/DevLink")
+focus_neighbor_right = NodePath("../../MainMenuButton")
+focus_neighbor_bottom = NodePath("../../MainMenuButton")
+focus_next = NodePath("../../MainMenuButton")
+focus_previous = NodePath("../DevContainer/DevLink")
+focus_mode = 2
+text = "Kayno0o/advanced-minesweeper"
+uri = "https://github.com/kayno0o/advanced-minesweeper"
