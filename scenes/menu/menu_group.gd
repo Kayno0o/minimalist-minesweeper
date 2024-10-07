@@ -23,6 +23,8 @@ func init_menus() -> void:
 			menu.visible = true
 			menu.set_process(true)
 
+			menu.focus_button.grab_focus()
+
 			continue
 
 		menu.visible = false
