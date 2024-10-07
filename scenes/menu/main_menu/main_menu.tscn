@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/menu/main_menu/main_menu.gd" id="1_jg4ee"]
 [ext_resource type="Theme" uid="uid://dhq8le66f6khp" path="res://assets/ui/theme.tres" id="3_rhcb6"]
-[ext_resource type="Script" path="res://scenes/menu/scripts/menu_button_class.gd" id="3_wgyc8"]
+[ext_resource type="Script" path="res://globals/menu_button_class.gd" id="3_wgyc8"]
 [ext_resource type="Texture2D" uid="uid://dvst1mvub3t2n" path="res://assets/ui/ui.png" id="4_khul5"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_rxl00"]
@@ -39,7 +39,7 @@ events = [SubResource("InputEventKey_hhgk8")]
 atlas = ExtResource("4_khul5")
 region = Rect2(32, 80, 16, 16)
 
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("buttons", "focus_button")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("buttons", "main_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,7 +49,7 @@ grow_vertical = 2
 script = ExtResource("1_jg4ee")
 menu_name = "main_menu"
 buttons = [NodePath("OptionButton"), NodePath("CreditButton")]
-focus_button = NodePath("StartButton")
+main_button = NodePath("StartButton")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -114,7 +114,6 @@ text = "Options"
 icon = SubResource("AtlasTexture_aj7b3")
 expand_icon = true
 script = ExtResource("3_wgyc8")
-menu_name = "option_menu"
 
 [node name="CreditButton" type="Button" parent="."]
 layout_mode = 1
@@ -141,6 +140,6 @@ text = "Credits"
 icon = SubResource("AtlasTexture_3hlia")
 expand_icon = true
 script = ExtResource("3_wgyc8")
-menu_name = "credit_menu"
+menu_position = 2
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

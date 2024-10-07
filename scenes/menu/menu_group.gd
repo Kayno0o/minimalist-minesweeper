@@ -1,81 +1,80 @@
 extends Control
 
-@export var current_menu_index: int
 @export var menus: Array[Menu] = []
+@export var current_menu: Menu
 
 var transitionning: bool = false
 
 func _ready() -> void:
 	for menu in menus:
 		for button in menu.buttons:
-			button.connect("open_menu", _on_open_menu)
+			button.connect("go_to_menu", _on_go_to_menu)
 
 	init_menus()
 
 func init_menus() -> void:
-	if menus[current_menu_index] == null:
+	if current_menu == null:
 		return
 
 	for menu_index in menus.size():
 		var menu = menus[menu_index]
 
-		if menu.menu_name == menus[current_menu_index].menu_name:
-			menu.visible = true
+		if menu.menu_name == current_menu.menu_name:
 			menu.set_process(true)
-
-			menu.focus_button.grab_focus()
-
+			menu.visible = true
 			continue
 
-		menu.visible = false
 		menu.set_process(false)
+		menu.visible = false
 
-func get_menu_position(menu: Menu, menu_index: int) -> float:
-	if menu_index > current_menu_index:
-		return menu.size.x
+func get_menu_position(menu: Menu, menu_position: Enum.MenuPosition) -> Vector2:
+	if menu_position == Enum.MenuPosition.LEFT:
+		return Vector2(-menu.size.x, 0)
 
-	return -menu.size.x
+	if menu_position == Enum.MenuPosition.TOP:
+		return Vector2(0, -menu.size.y)
 
-func _on_open_menu(new_menu_name: String) -> void:
+	if menu_position == Enum.MenuPosition.RIGHT:
+		return Vector2(menu.size.x, 0)
+
+	if menu_position == Enum.MenuPosition.BOTTOM:
+		return Vector2(0, menu.size.y)
+
+	return Vector2(0, 0)
+
+func _on_go_to_menu(new_menu_position: Enum.MenuPosition) -> void:
 	if transitionning:
 		return
 
-	var new_menu_index: int = -1
+	var new_menu: Menu = current_menu.get_menu_from_position(new_menu_position)
 
-	for menu_index in menus.size():
-		if menus[menu_index].menu_name == new_menu_name:
-			new_menu_index = menu_index
-
-	if new_menu_index == -1:
+	if new_menu == null:
 		return
 
 	transitionning = true
 
-	var current_menu = menus[current_menu_index]
-
-	var new_menu = menus[new_menu_index]
 	new_menu.visible = true
 	new_menu.set_process(true)
-	new_menu.position.x = get_menu_position(new_menu, new_menu_index)
+	new_menu.position = get_menu_position(new_menu, new_menu_position)
 
 	var tween: Tween = create_tween().set_parallel(true)
 
 	# change menu position
-	tween.tween_property(current_menu, "position:x", -get_menu_position(current_menu, new_menu_index), 0.5).set_trans(Tween.TRANS_CIRC)
-	tween.tween_property(new_menu, "position:x", 0, 0.7).set_trans(Tween.TRANS_BACK)
+	tween.tween_property(current_menu, "position", -get_menu_position(current_menu, new_menu_position), 0.5).set_trans(Tween.TRANS_CIRC)
+	tween.tween_property(new_menu, "position", Vector2(0, 0), 0.7).set_trans(Tween.TRANS_BACK)
 
 	# change current_menu opacity
-	tween.tween_property(current_menu, "modulate:a", 0, 0.4)
+	tween.tween_property(current_menu, "modulate:a", 0, 0.6)
 	tween.tween_property(new_menu, "modulate:a", 1, 0.4)
 
 	await tween.finished
 
 	current_menu.visible = false
 	current_menu.set_process(false)
-	current_menu_index = new_menu_index
+	current_menu = new_menu
 
-	if new_menu.focus_button != null:
-		new_menu.focus_button.grab_focus()
+	if new_menu.main_button != null:
+		new_menu.main_button.grab_focus()
 	elif new_menu.buttons[0] != null:
 		new_menu.buttons[0].grab_focus()
 	

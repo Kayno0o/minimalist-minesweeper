@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bgb02ep8cfa4q" path="res://scenes/menu/option_menu/option_menu.tscn" id="4_ct4l3"]
 [ext_resource type="PackedScene" uid="uid://b8h0fvnk6p7il" path="res://scenes/menu/credit_menu/credit_menu.tscn" id="5_hl5pd"]
 
-[node name="MenuGroup" type="Control" node_paths=PackedStringArray("menus")]
+[node name="MenuGroup" type="Control" node_paths=PackedStringArray("menus", "current_menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,20 +14,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w81ku")
-current_menu_index = 1
-menus = [NodePath("OptionMenu"), NodePath("MainMenu"), NodePath("CreditMenu")]
+menus = [NodePath("MainMenu"), NodePath("OptionMenu"), NodePath("CreditMenu")]
+current_menu = NodePath("MainMenu")
 
 [node name="Background" parent="." instance=ExtResource("2_boam0")]
 layout_mode = 1
 
-[node name="MainMenu" parent="." instance=ExtResource("3_bfsf1")]
-visible = false
+[node name="MainMenu" parent="." node_paths=PackedStringArray("left", "right") instance=ExtResource("3_bfsf1")]
 layout_mode = 1
+left = NodePath("../OptionMenu")
+right = NodePath("../CreditMenu")
 
-[node name="OptionMenu" parent="." instance=ExtResource("4_ct4l3")]
+[node name="OptionMenu" parent="." node_paths=PackedStringArray("right") instance=ExtResource("4_ct4l3")]
 visible = false
 layout_mode = 1
+right = NodePath("../MainMenu")
 
-[node name="CreditMenu" parent="." instance=ExtResource("5_hl5pd")]
+[node name="CreditMenu" parent="." node_paths=PackedStringArray("left") instance=ExtResource("5_hl5pd")]
 visible = false
 layout_mode = 1
+left = NodePath("../MainMenu")

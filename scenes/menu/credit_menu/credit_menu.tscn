@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/menu/credit_menu/credit_menu.gd" id="1_anmgk"]
 [ext_resource type="Theme" uid="uid://dhq8le66f6khp" path="res://assets/ui/theme.tres" id="2_ocr7c"]
-[ext_resource type="Script" path="res://scenes/menu/scripts/menu_button_class.gd" id="3_fytda"]
+[ext_resource type="Script" path="res://globals/menu_button_class.gd" id="3_fytda"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_csbqa"]
 device = -1
@@ -61,7 +61,6 @@ shortcut = SubResource("Shortcut_sd6f6")
 text = "Main Menu"
 expand_icon = true
 script = ExtResource("3_fytda")
-menu_name = "main_menu"
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
