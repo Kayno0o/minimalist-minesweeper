@@ -61,7 +61,6 @@ offset_right = -16.0
 offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 0
-focus_neighbor_top = NodePath("../StartButton")
 theme = ExtResource("1_eeea3")
 shortcut = SubResource("Shortcut_pdee6")
 text = "Main Menu"
