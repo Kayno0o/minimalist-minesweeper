@@ -11,17 +11,17 @@ class_name Menu
 @export var right: Menu
 @export var bottom: Menu
 
-func get_menu_from_position(menu_position: Enum.MenuPosition) -> Menu:
-  if menu_position == Enum.MenuPosition.LEFT:
+func get_menu_from_position(menu_position: Enum.Direction) -> Menu:
+  if menu_position == Enum.Direction.LEFT:
     return left
 
-  if menu_position == Enum.MenuPosition.TOP:
+  if menu_position == Enum.Direction.TOP:
     return top
 
-  if menu_position == Enum.MenuPosition.RIGHT:
+  if menu_position == Enum.Direction.RIGHT:
     return right
 
-  if menu_position == Enum.MenuPosition.BOTTOM:
+  if menu_position == Enum.Direction.BOTTOM:
     return bottom
 
   return null

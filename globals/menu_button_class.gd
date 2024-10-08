@@ -1,9 +1,9 @@
 extends Button
 class_name MenuBaseButton
 
-signal go_to_menu(menu_position: Enum.MenuPosition)
+signal go_to_menu(menu_position: Enum.Direction)
 
-@export var menu_position: Enum.MenuPosition
+@export var menu_position: Enum.Direction
 
 func _ready() -> void:
   connect("pressed", _on_pressed)

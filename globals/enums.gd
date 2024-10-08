@@ -1,7 +1,7 @@
 extends Node
 class_name Enum
 
-enum MenuPosition {
+enum Direction {
   LEFT,
   TOP,
   RIGHT,

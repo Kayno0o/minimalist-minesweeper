@@ -27,22 +27,22 @@ func init_menus() -> void:
 		menu.set_process(false)
 		menu.visible = false
 
-func get_menu_position(menu: Menu, menu_position: Enum.MenuPosition) -> Vector2:
-	if menu_position == Enum.MenuPosition.LEFT:
+func get_menu_position(menu: Menu, menu_position: Enum.Direction) -> Vector2:
+	if menu_position == Enum.Direction.LEFT:
 		return Vector2(-menu.size.x, 0)
 
-	if menu_position == Enum.MenuPosition.TOP:
+	if menu_position == Enum.Direction.TOP:
 		return Vector2(0, -menu.size.y)
 
-	if menu_position == Enum.MenuPosition.RIGHT:
+	if menu_position == Enum.Direction.RIGHT:
 		return Vector2(menu.size.x, 0)
 
-	if menu_position == Enum.MenuPosition.BOTTOM:
+	if menu_position == Enum.Direction.BOTTOM:
 		return Vector2(0, menu.size.y)
 
 	return Vector2(0, 0)
 
-func _on_go_to_menu(new_menu_position: Enum.MenuPosition) -> void:
+func _on_go_to_menu(new_menu_position: Enum.Direction) -> void:
 	if transitionning:
 		return
 
