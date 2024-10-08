@@ -65,7 +65,7 @@ theme = ExtResource("3_rhcb6")
 theme_override_colors/font_shadow_color = Color(0.933333, 0.52549, 0.584314, 1)
 theme_override_constants/line_spacing = -25
 theme_override_font_sizes/font_size = 45
-text = "Advanced
+text = "Minimalist
 Minesweeper"
 horizontal_alignment = 1
 

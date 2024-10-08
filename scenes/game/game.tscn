@@ -33,6 +33,7 @@ grow_vertical = 0
 
 [node name="Background" type="TileMapLayer" parent="Board"]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.74902)
 tile_set = ExtResource("3_xccxs")
 
 [node name="Foreground" type="TileMapLayer" parent="Board"]

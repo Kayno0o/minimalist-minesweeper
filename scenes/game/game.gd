@@ -63,6 +63,10 @@ func _input(event: InputEvent):
 	var fg_data: TileData = fg.get_cell_tile_data(cell)
 
 	if event.button_index == MOUSE_BUTTON_LEFT:
+		var is_flag = fg_data.get_custom_data("is_flag") if fg_data != null else false
+		if is_flag:
+			return
+
 		var is_bomb: bool = get_is_bomb(cell)
 
 		if is_bomb:
@@ -159,7 +163,7 @@ func get_is_win() -> bool:
 				if fg_data == null:
 					continue
 
-				var is_flag = fg_data.get_custom_data("is_flag")
+				var is_flag = fg_data.get_custom_data("is_flag") if fg_data != null else false
 				if not is_flag:
 					return false
 				

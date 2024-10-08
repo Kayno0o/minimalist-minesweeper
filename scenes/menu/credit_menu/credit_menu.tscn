@@ -116,5 +116,5 @@ focus_neighbor_bottom = NodePath("../../MainMenuButton")
 focus_next = NodePath("../../MainMenuButton")
 focus_previous = NodePath("../DevContainer/DevLink")
 focus_mode = 2
-text = "Kayno0o/advanced-minesweeper"
-uri = "https://github.com/kayno0o/advanced-minesweeper"
+text = "Kayno0o/minimalist-minesweeper"
+uri = "https://github.com/kayno0o/minimalist-minesweeper"
