@@ -1,1 +1,1 @@
-# advanced-minesweeper
+# minimalist-minesweeper
