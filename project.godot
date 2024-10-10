@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Advanced Minesweeper"
-run/main_scene="res://scenes/menu/menu_group.tscn"
+run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 MenuSwitcher="*res://globals/menu_switcher.gd"
+Utils="*res://globals/utils.gd"
 
 [display]
 

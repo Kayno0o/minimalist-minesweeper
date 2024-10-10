@@ -1,9 +1,9 @@
 extends Control
 class_name Game
 
-@export var grid_width: int = 10
-@export var grid_height: int = 10
-@export var bomb_count: int = 10
+@export var grid_width: int = 16
+@export var grid_height: int = 16
+@export var bomb_count: int = 24
 
 @onready var board: Control = %Board
 @onready var fg: TileMapLayer = %Foreground

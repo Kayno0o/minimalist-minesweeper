@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://dhq8le66f6khp" path="res://assets/ui/theme.tres" id="1_eeea3"]
 [ext_resource type="Script" path="res://scenes/menu/option_menu/option_menu.gd" id="1_t7llv"]
-[ext_resource type="Script" path="res://globals/menu_button_class.gd" id="3_kr8wa"]
+[ext_resource type="Script" path="res://globals/classes/scene_button_class.gd" id="3_kr8wa"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_csbqa"]
 device = -1
@@ -18,7 +18,7 @@ func _on_toggled(toggled_on:bool) -> void:
 	RenderingServer.global_shader_parameter_set(\"animated_background\", toggled_on)
 "
 
-[node name="OptionMenu" type="Control" node_paths=PackedStringArray("buttons", "main_button")]
+[node name="OptionMenu" type="Control" node_paths=PackedStringArray("main_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,8 +26,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t7llv")
-menu_name = "option_menu"
-buttons = [NodePath("MainMenuButton")]
 main_button = NodePath("AnimatedBgButton")
 
 [node name="Label" type="Label" parent="."]
@@ -66,7 +64,9 @@ shortcut = SubResource("Shortcut_pdee6")
 text = "Main Menu"
 expand_icon = true
 script = ExtResource("3_kr8wa")
-menu_position = 2
+direction = 2
+transition_with_loading_screen = false
+load_scene = "res://scenes/menu/main_menu/main_menu.tscn"
 
 [node name="AnimatedBgButton" type="CheckBox" parent="."]
 layout_mode = 1

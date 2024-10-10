@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmut14fu7kaog"]
+[gd_scene load_steps=3 format=3 uid="uid://cmut14fu7kaog"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_ke3qs"]
-[ext_resource type="PackedScene" uid="uid://bclavqqpokmq2" path="res://scenes/menu/background.tscn" id="2_recde"]
 [ext_resource type="TileSet" uid="uid://c2uj7jowrph1q" path="res://assets/cells/cells_tileset.tres" id="3_xccxs"]
 
 [node name="Game" type="Control"]
@@ -12,9 +11,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ke3qs")
-
-[node name="Background" parent="." instance=ExtResource("2_recde")]
-layout_mode = 1
 
 [node name="Board" type="Control" parent="."]
 unique_name_in_owner = true
