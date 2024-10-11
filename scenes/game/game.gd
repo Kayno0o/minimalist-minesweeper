@@ -62,6 +62,26 @@ func _input(event: InputEvent):
 	var bg_data: TileData = bg.get_cell_tile_data(cell)
 	var fg_data: TileData = fg.get_cell_tile_data(cell)
 
+	if event.button_index == MOUSE_BUTTON_MIDDLE:
+		var number: int = fg_data.get_custom_data("number") if fg_data != null else 0
+		if number > 0:
+			var bomb_nb = has_bomb_neighbour(get_surrounding_cells(cell))
+			var correct_flag_nb = get_surrounding_cells(cell).reduce(
+				func(acc: int, neighbour: Vector2i):
+					var neighbour_fg_data = fg.get_cell_tile_data(neighbour)
+					if neighbour_fg_data != null and neighbour_fg_data.get_custom_data("is_flag") and get_is_bomb(neighbour):
+						acc += 1
+					return acc,
+				0
+			)
+
+			if bomb_nb == correct_flag_nb:
+				for neighbour in get_surrounding_cells(cell):
+					var neighbour_fg_data = fg.get_cell_tile_data(neighbour)
+					if neighbour_fg_data == null:
+						explore(neighbour)
+				check_and_handle_win()
+
 	if event.button_index == MOUSE_BUTTON_LEFT:
 		var is_flag = fg_data.get_custom_data("is_flag") if fg_data != null else false
 		if is_flag:
@@ -134,6 +154,14 @@ func has_bomb_neighbour(surrounding_cells: Array[Vector2i]) -> int:
 	var number: int = 0
 	for neighbour in surrounding_cells:
 		if get_is_bomb(neighbour):
+			number += 1
+	return number
+
+func has_flag_neighbour(surrounding_cells: Array[Vector2i]) -> int:
+	var number: int = 0
+	for neighbour in surrounding_cells:
+		var fg_data = fg.get_cell_tile_data(neighbour)
+		if fg_data != null and fg_data.get_custom_data("is_flag"):
 			number += 1
 	return number
 
