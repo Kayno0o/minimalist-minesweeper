@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://dhq8le66f6khp"]
+[gd_resource type="Theme" load_steps=16 format=3 uid="uid://dhq8le66f6khp"]
 
 [ext_resource type="Texture2D" uid="uid://dvst1mvub3t2n" path="res://assets/ui/ui.png" id="1_oetkk"]
 [ext_resource type="StyleBox" uid="uid://dw6xw77fh0k1y" path="res://assets/ui/focus.tres" id="2_e62o2"]
@@ -47,6 +47,28 @@ region = Rect2(0, 16, 32, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_dse2n"]
 region = Rect2(32, 16, 32, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyv07"]
+atlas = ExtResource("1_oetkk")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_etos0"]
+texture = SubResource("AtlasTexture_fyv07")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvm5v"]
+atlas = ExtResource("1_oetkk")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rvw5n"]
+texture = SubResource("AtlasTexture_lvm5v")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
 [resource]
 Button/colors/font_color = Color(0.984314, 0.733333, 0.678431, 1)
 Button/colors/font_disabled_color = Color(0.160784, 0.156863, 0.192157, 1)
@@ -70,3 +92,5 @@ Label/colors/font_color = Color(0.984314, 0.733333, 0.678431, 1)
 LinkButton/colors/font_color = Color(0.933333, 0.52549, 0.584314, 1)
 LinkButton/colors/font_focus_color = Color(0.290196, 0.478431, 0.588235, 1)
 LinkButton/styles/focus = ExtResource("2_e62o2")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_etos0")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_rvw5n")
