@@ -85,6 +85,15 @@ func load_scene_async(scene_path: String, progress_bar: ProgressBar = null):
 	else:
 		push_error("Failed to load scene: %s" % scene_path)
 
+func transition_to_loading(direction: Enum.Direction) -> ProgressBar:
+	var loading_screen: LoadingScreen = loading_screen_packed.instantiate()
+	root.add_child(loading_screen)
+	var progress_bar = loading_screen.loading_bar
+
+	await transition_to_node(current_scene, loading_screen, direction)
+
+	return progress_bar
+
 
 func transition_to_node(from: Node, to: Node, direction: Enum.Direction):
 	if to != null:
