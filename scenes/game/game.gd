@@ -22,7 +22,7 @@ func _on_win():
 	print("You win!")
 
 func _on_lose():
-	await MenuSwitcher.transition_to_node(board_wrapper, end_screen, Enum.Direction.TOP)
+	await MenuSwitcher.transition_to_node(board_wrapper, end_screen, Enum.Direction.LEFT)
 
 func _on_start_difficulty(difficulty: Difficulty) -> void:
 	start_game(difficulty)
@@ -32,7 +32,7 @@ func _on_start_difficulty(difficulty: Difficulty) -> void:
 func _on_restart_game() -> void:
 	start_game(current_difficulty)
 
-	await MenuSwitcher.transition_to_node(end_screen, board_wrapper, Enum.Direction.BOTTOM)
+	await MenuSwitcher.transition_to_node(end_screen, board_wrapper, Enum.Direction.RIGHT)
 
 func start_game(difficulty: Difficulty) -> void:
 	current_difficulty = difficulty
