@@ -9,6 +9,7 @@ var bomb_count: int = 24
 @onready var bg: TileMapLayer = %Background
 
 var bombs: Array[Vector2i] = []
+var flags: int
 
 const PRESSED = 0
 const UNPRESSED = 1
@@ -22,6 +23,7 @@ func start_game(new_grid_width: int, new_grid_height: int, new_bomb_count: int):
 	grid_width = new_grid_width
 	grid_height = new_grid_height
 	bomb_count = new_bomb_count
+	flags = 0
 
 	bg.position = Vector2(0, 0)
 	bg.clear()
@@ -62,59 +64,74 @@ func _input(event: InputEvent):
 
 	var local_position = bg.to_local(event.global_position)
 	var cell: Vector2i = bg.local_to_map(local_position)
-	var bg_data: TileData = bg.get_cell_tile_data(cell)
-	var fg_data: TileData = fg.get_cell_tile_data(cell)
 
 	if event.button_index == MOUSE_BUTTON_MIDDLE:
-		var number: int = fg_data.get_custom_data("number") if fg_data != null else 0
-		if number > 0:
-			var bomb_nb = has_bomb_neighbour(get_surrounding_cells(cell))
-			var correct_flag_nb = get_surrounding_cells(cell).reduce(
-				func(acc: int, neighbour: Vector2i):
-					var neighbour_fg_data = fg.get_cell_tile_data(neighbour)
-					if neighbour_fg_data != null and neighbour_fg_data.get_custom_data("is_flag") and get_is_bomb(neighbour):
-						acc += 1
-					return acc,
-				0
-			)
-
-			if bomb_nb == correct_flag_nb:
-				for neighbour in get_surrounding_cells(cell):
-					var neighbour_fg_data = fg.get_cell_tile_data(neighbour)
-					if neighbour_fg_data == null:
-						explore(neighbour)
-				check_and_handle_win()
+		middle_click(cell)
+		return
 
 	if event.button_index == MOUSE_BUTTON_LEFT:
-		var is_flag = fg_data.get_custom_data("is_flag") if fg_data != null else false
-		if is_flag:
-			return
-
-		var is_bomb: bool = get_is_bomb(cell)
-
-		if is_bomb:
-			bg.set_cells_terrain_connect([cell], 0, PRESSED, true)
-			fg.set_cell(cell, 0, Vector2i(1, 1))
-			handle_lose()
-		else:
-			explore(cell)
-			check_and_handle_win()
-
+		left_click(cell)
 		return
 	
 	if event.button_index == MOUSE_BUTTON_RIGHT:
-		if bg_data == null:
-			return
+		right_click(cell)
+		return
 
-		if bg_data.get_custom_data("is_pressed"):
-			return
+func left_click(cell: Vector2i):
+	var fg_data: TileData = fg.get_cell_tile_data(cell)
 
-		if fg_data != null and fg_data.get_custom_data("is_flag"):
-			fg.set_cell(cell)
+	var is_flag = fg_data.get_custom_data("is_flag") if fg_data != null else false
+	if is_flag:
+		return
+
+	var is_bomb: bool = get_is_bomb(cell)
+
+	if is_bomb:
+		bg.set_cells_terrain_connect([cell], 0, PRESSED, true)
+		fg.set_cell(cell, 0, Vector2i(1, 1))
+		handle_lose()
+	else:
+		explore(cell)
+		check_and_handle_win()
+
+func middle_click(cell: Vector2i):
+	var fg_data: TileData = fg.get_cell_tile_data(cell)
+
+	var number: int = fg_data.get_custom_data("number") if fg_data != null else 0
+	if number > 0:
+		var bomb_nb = has_bomb_neighbour(get_surrounding_cells(cell))
+		var correct_flag_nb = get_surrounding_cells(cell).reduce(
+			func(acc: int, neighbour: Vector2i):
+				var neighbour_fg_data = fg.get_cell_tile_data(neighbour)
+				if neighbour_fg_data != null and neighbour_fg_data.get_custom_data("is_flag") and get_is_bomb(neighbour):
+					acc += 1
+				return acc,
+			0
+		)
+
+		if bomb_nb == correct_flag_nb:
+			for neighbour in get_surrounding_cells(cell):
+				var neighbour_fg_data = fg.get_cell_tile_data(neighbour)
+				if neighbour_fg_data == null:
+					explore(neighbour)
 			check_and_handle_win()
-		elif fg_data == null:
-			fg.set_cell(cell, 0, Vector2i(0, 1))
-			check_and_handle_win()
+
+func right_click(cell: Vector2i):
+	var bg_data: TileData = bg.get_cell_tile_data(cell)
+	var fg_data: TileData = fg.get_cell_tile_data(cell)
+
+	if bg_data == null:
+		return
+
+	if bg_data.get_custom_data("is_pressed"):
+		return
+
+	if fg_data != null and fg_data.get_custom_data("is_flag"):
+		fg.set_cell(cell)
+		check_and_handle_win()
+	elif fg_data == null:
+		fg.set_cell(cell, 0, Vector2i(0, 1))
+		check_and_handle_win()
 
 func get_is_bomb(cell: Vector2i) -> bool:
 	for bomb in bombs:
@@ -171,12 +188,12 @@ func has_flag_neighbour(surrounding_cells: Array[Vector2i]) -> int:
 	return number
 
 func handle_lose():
-	print("lose")
+	lose.emit()
 
 func check_and_handle_win():
 	var is_win = get_is_win()
 	if is_win:
-		print("win")
+		win.emit()
 
 func get_is_win() -> bool:
 	for y in range(grid_height):

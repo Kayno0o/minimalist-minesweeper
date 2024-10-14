@@ -90,6 +90,7 @@ text = "Start Game"
 icon = SubResource("AtlasTexture_hkyl6")
 script = ExtResource("3_wgyc8")
 direction = 1
+transition_with_loading_screen = false
 load_scene = "res://scenes/game/game.tscn"
 
 [node name="OptionButton" type="Button" parent="."]

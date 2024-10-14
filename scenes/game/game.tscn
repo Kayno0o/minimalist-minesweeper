@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmut14fu7kaog"]
+[gd_scene load_steps=7 format=3 uid="uid://cmut14fu7kaog"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_ke3qs"]
 [ext_resource type="Script" path="res://scenes/game/board/board.gd" id="2_r6csn"]
 [ext_resource type="TileSet" uid="uid://c2uj7jowrph1q" path="res://assets/cells/cells_tileset.tres" id="3_xccxs"]
+[ext_resource type="Theme" uid="uid://dhq8le66f6khp" path="res://assets/ui/theme.tres" id="4_f8ej2"]
+[ext_resource type="Script" path="res://scenes/game/difficulty_screen/difficulty_button.gd" id="5_k5t28"]
+[ext_resource type="Script" path="res://scenes/game/end_screen/end_screen.gd" id="6_tnyjf"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -14,6 +17,7 @@ grow_vertical = 2
 script = ExtResource("1_ke3qs")
 
 [node name="BoardWrapper" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,3 +49,124 @@ tile_set = ExtResource("3_xccxs")
 [node name="Foreground" type="TileMapLayer" parent="BoardWrapper/Board"]
 unique_name_in_owner = true
 tile_set = ExtResource("3_xccxs")
+
+[node name="DifficultySelect" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="DifficultySelect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -152.0
+offset_top = 64.0
+offset_right = 152.0
+offset_bottom = 160.0
+grow_horizontal = 2
+theme = ExtResource("4_f8ej2")
+theme_override_colors/font_shadow_color = Color(0.933333, 0.52549, 0.584314, 1)
+theme_override_constants/line_spacing = -25
+theme_override_font_sizes/font_size = 45
+text = "Select Difficulty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DifficultySelect"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = -16.0
+offset_right = 148.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="EasyButton" type="Button" parent="DifficultySelect/HBoxContainer"]
+custom_minimum_size = Vector2(96, 32)
+layout_mode = 2
+text = "Easy"
+script = ExtResource("5_k5t28")
+
+[node name="NormalButton" type="Button" parent="DifficultySelect/HBoxContainer"]
+custom_minimum_size = Vector2(96, 32)
+layout_mode = 2
+text = "Normal"
+script = ExtResource("5_k5t28")
+difficulty = 1
+
+[node name="HardButton" type="Button" parent="DifficultySelect/HBoxContainer"]
+custom_minimum_size = Vector2(96, 32)
+layout_mode = 2
+text = "Hard"
+script = ExtResource("5_k5t28")
+difficulty = 2
+
+[node name="EndScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_tnyjf")
+
+[node name="Label" type="Label" parent="EndScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -152.0
+offset_top = 64.0
+offset_right = 152.0
+offset_bottom = 160.0
+grow_horizontal = 2
+theme = ExtResource("4_f8ej2")
+theme_override_colors/font_shadow_color = Color(0.933333, 0.52549, 0.584314, 1)
+theme_override_constants/line_spacing = -25
+theme_override_font_sizes/font_size = 45
+text = "You lose !"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="EndScreen/VBoxContainer"]
+layout_mode = 2
+text = "You lost after successfuly flagging [x] bombs."
+
+[node name="Restart" type="Button" parent="EndScreen/VBoxContainer"]
+custom_minimum_size = Vector2(96, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Restart"
+
+[connection signal="start_difficulty" from="DifficultySelect/HBoxContainer/EasyButton" to="." method="_on_start_difficulty"]
+[connection signal="start_difficulty" from="DifficultySelect/HBoxContainer/NormalButton" to="." method="_on_start_difficulty"]
+[connection signal="start_difficulty" from="DifficultySelect/HBoxContainer/HardButton" to="." method="_on_start_difficulty"]
+[connection signal="pressed" from="EndScreen/VBoxContainer/Restart" to="." method="_on_restart_game"]

@@ -97,6 +97,8 @@ func transition_to_loading(direction: Enum.Direction) -> ProgressBar:
 
 func transition_to_node(from: Node, to: Node, direction: Enum.Direction):
 	if to != null:
+		to.set_process(true)
+		to.visible = true
 		to.position = get_scene_position(to, direction)
 
 	var tween: Tween = create_tween().set_parallel(true)
@@ -112,3 +114,10 @@ func transition_to_node(from: Node, to: Node, direction: Enum.Direction):
 		tween.tween_property(to, "modulate:a", 1, 0.4)
 
 	await tween.finished
+
+	if from != null:
+		from.set_process(false)
+		from.visible = false
+
+		if from is Menu and from.main_button != null:
+			from.main_button.grab_focus()
